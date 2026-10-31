@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image Gallery</title>
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+<script src="script.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="page-header">
+    <h1>Image Gallery</h1>
+    <p>
+      Twelve frames from the road. Filter by category, then click any photo to
+      open the viewer — use <kbd>←</kbd> <kbd>→</kbd> to browse and
+      <kbd>Esc</kbd> to close, or swipe on touch screens.
+    </p>
+  </header>
+  <main>
+    <div class="filters" id="filters" role="group" aria-label="Filter gallery by category">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">All <span class="filter__count">12</span></button>
+      <button class="filter" type="button" data-filter="nature" aria-pressed="false">Nature <span class="filter__count">4</span></button>
+      <button class="filter" type="button" data-filter="urban" aria-pressed="false">Urban <span class="filter__count">4</span></button>
+      <button class="filter" type="button" data-filter="portrait" aria-pressed="false">Portrait <span class="filter__count">4</span></button>
+    </div>
+    <p class="sr-only" id="filterStatus" role="status" aria-live="polite"></p>
+
+    <ul class="gallery is-leaving" id="gallery">
+      <li class="card" data-cat="nature">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/pines/1600/1100" data-title="Misty Pines" data-tag="Nature">
+          <img src="https://picsum.photos/seed/pines/700/700" alt="Pine trees fading into morning mist" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Nature</span><span class="thumb__title">Misty Pines</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="nature">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/coast/1600/1100" data-title="Coastal Fog" data-tag="Nature">
+          <img src="https://picsum.photos/seed/coast/700/700" alt="Fog rolling over a rocky coastline" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Nature</span><span class="thumb__title">Coastal Fog</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="nature">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/ridge/1600/1100" data-title="Alpine Ridge" data-tag="Nature">
+          <img src="https://picsum.photos/seed/ridge/700/700" alt="Snow-dusted alpine ridge at sunrise" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Nature</span><span class="thumb__title">Alpine Ridge</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="nature">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/lake/1600/1100" data-title="Still Lake" data-tag="Nature">
+          <img src="https://picsum.photos/seed/lake/700/700" alt="Still lake reflecting the surrounding hills" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Nature</span><span class="thumb__title">Still Lake</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="urban">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/alley/1600/1100" data-title="Neon Alley" data-tag="Urban">
+          <img src="https://picsum.photos/seed/alley/700/700" alt="Narrow alley lit by neon signs at night" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Urban</span><span class="thumb__title">Neon Alley</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="urban">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/metro/1600/1100" data-title="Last Train" data-tag="Urban">
+          <img src="https://picsum.photos/seed/metro/700/700" alt="Empty subway platform late at night" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Urban</span><span class="thumb__title">Last Train</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="urban">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/skyline/1600/1100" data-title="Glass Skyline" data-tag="Urban">
+          <img src="https://picsum.photos/seed/skyline/700/700" alt="Glass skyscrapers reflecting the afternoon sky" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Urban</span><span class="thumb__title">Glass Skyline</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="urban">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/market/1600/1100" data-title="Night Market" data-tag="Urban">
+          <img src="https://picsum.photos/seed/market/700/700" alt="Busy night market strung with lights" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Urban</span><span class="thumb__title">Night Market</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="portrait">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/softlight/1600/1100" data-title="Soft Light" data-tag="Portrait">
+          <img src="https://picsum.photos/seed/softlight/700/700" alt="Portrait lit by soft window light" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Portrait</span><span class="thumb__title">Soft Light</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="portrait">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/goldenhour/1600/1100" data-title="Golden Hour" data-tag="Portrait">
+          <img src="https://picsum.photos/seed/goldenhour/700/700" alt="Portrait backlit by golden hour sun" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Portrait</span><span class="thumb__title">Golden Hour</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="portrait">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/studioblue/1600/1100" data-title="Studio Blue" data-tag="Portrait">
+          <img src="https://picsum.photos/seed/studioblue/700/700" alt="Studio portrait against a deep blue backdrop" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Portrait</span><span class="thumb__title">Studio Blue</span></span>
+        </button>
+      </li>
+      <li class="card" data-cat="portrait">
+        <button class="thumb" type="button" data-full="https://picsum.photos/seed/backlit/1600/1100" data-title="Backlit" data-tag="Portrait">
+          <img src="https://picsum.photos/seed/backlit/700/700" alt="Silhouette portrait with strong rim lighting" loading="lazy" decoding="async">
+          <span class="thumb__veil" aria-hidden="true"></span><span class="thumb__badge" aria-hidden="true">&#x26F6;</span>
+          <span class="thumb__caption"><span class="thumb__tag">Portrait</span><span class="thumb__title">Backlit</span></span>
+        </button>
+      </li>
+    </ul>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+  <p class="lb-counter" id="lbCounter">1 / 12</p>
+  <button class="lb-close" type="button" data-close aria-label="Close viewer"><span aria-hidden="true">&times;</span></button>
+  <button class="lb-nav lb-nav--prev" type="button" aria-label="Previous image"><span aria-hidden="true">&#8249;</span></button>
+  <button class="lb-nav lb-nav--next" type="button" aria-label="Next image"><span aria-hidden="true">&#8250;</span></button>
+  <figure class="lb-figure">
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <figcaption class="lb-caption"><span class="lb-tag" id="lbTag"></span><h2 class="lb-title" id="lbTitle"></h2></figcaption>
+  </figure>
+</div>
+</body>
+</html>
